@@ -17,6 +17,19 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: Asia/Seoul
 
+  mongodb:
+    image: mongo:latest
+    container_name: microdust-mongodb
+    volumes:
+      - ./mongodb/data:/data/db
+      - ./mongodb/log:/data/log
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/data/log
+
   myapp:
     depends_on:
       - mysql
