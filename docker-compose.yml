@@ -30,13 +30,12 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/data/log
 
-  myapp:
-    depends_on:
-      - mysql
-    image: ifjso/myapp:1.0
-    container_name: testapp
+  redis:
+    image: redis:latest
+    container_name: microdust-redis
     restart: always
     ports:
-      - 8080:8080
+      - 6379:6379
     environment:
-      TZ: Asia/Seoul
+      - ALLOW_EMPTY_PASSWORD=yes
+
